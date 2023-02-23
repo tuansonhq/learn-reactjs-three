@@ -1,43 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReactJS</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+</head>
+<body>
+  <!-- <h1>Add React to website</h1> -->
+  <div id="root"></div>
+  <div id="root2"></div>
+  <div id="root3"></div>
+  <div id="root4"></div>
+  <div id="root5"></div>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  <script type="text/babel">
+  
+    const Form = {
+      Input(){
+        return <input/>
+      },
+      Checkbox(){
+        return <input type="checkbox"/>;
+      }
+    };
+    
+    //Container
+    function App() {
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+      const type = 'Checkbox';
+      const Component = Form[type];
+
+      return (
+        <div id="wrapper">
+            <Component />
+        </div>
+      );
+    }
+
+    //index.js
+    const dom = document.getElementById('root');
+    const root = ReactDOM.createRoot(dom);
+    root.render(<App/>);
+
+    function Button({ title, href, onClick }){
+      let Component = 'button';
+      const props = {};
+
+      if(href){
+        Component = 'a';
+        props.href = href;
+      }
+
+      if(onClick){
+        props.onClick = onClick;
+      }
+
+      return (
+        <Component {...props}>{title}</Component>
+      );
+    }
+
+//Container
+    function App2() {
+
+      return (
+        <div id="wrapper">
+            <Button
+              title="Click me!"
+              href="https://shopas.net/"
+              onClick={() => console.log(Math.random())}
+            />
+        </div>
+      );
+    }
+
+    //index.js
+    const dom2 = document.getElementById('root2');
+    const root2 = ReactDOM.createRoot(dom2);
+    root2.render(<App2 />);
+
+    //Ví dụ về toán tử
+  
+    function App3() {
+      let firstAccess = true;
+      //Toán tử logic
+      return (
+        <div id="wrapper">
+            { firstAccess && <h1>Welcom to HQPLAY</h1> }
+        </div>
+      );
+    }
+
+    const dom3 = document.getElementById('root3');
+    const root3 = ReactDOM.createRoot(dom3);
+    root3.render(<App3 />);
+
+    function App4({title}) {
+      let firstAccess = true;
+      //Toán tử logic
+      return (
+        <div id="wrapper">
+            <h1>{ title || "Welcom back!" }</h1>
+        </div>
+      );
+    }
+
+    const dom4 = document.getElementById('root4');
+    const root4 = ReactDOM.createRoot(dom4);
+    root4.render(<App4/>);
+
+  </script>
+
+  <script type="text/babel">
+    //DOM event
+
+    // function App(){
+    //   return (
+    //     <div id="wrapper">
+    //       <button 
+    //         onClick={(event) => 
+    //           // console.log(Math.random())
+    //           console.log(event.target)
+    //         }
+    //       >
+    //         Click me!</button>
+    //     </div>
+    //   );
+    // }
+
+
+
+    // const dom = document.getElementById('root');
+    // const root = ReactDOM.createRoot(dom);
+    // root.render(<App/>);
+
+  </script>
+  
+  <!-- <script type="text/babel">
+    
+    const courses = [
+      {
+      "id": 20,
+      "placement": "home",
+      "type": "slideshow",
+      "show_with": null,
+      "slot_id": null,
+      "banner": "banners/20/6308a6bf603a4.png",
+      "title": "Khóa học HTML CSS Pro",
+      "description": "Đây là khóa học đầy đủ và chi tiết nhất bạn có thể tìm thấy được ở trên Internet!",
+      "alt": "Khóa Học HTML CSS Pro",
+      "cta_title": "Tìm hiểu thêm",
+      "link_to": "https://fullstack.edu.vn/landing/htmlcss",
+      "data": {
+        "props": {
+          "style": {
+            "--cta-hover-color": "#6828fa",
+            "background": "linear-gradient(to right, #6828fa,       #ffbaa4)"
+            }
+          }
+        },
+      "is_blank": 1,
+      "is_pro": true,
+      "priority": 1,
+      "expired": "2023-12-18 23:59:00",
+      "created_at": "2022-08-08T16:35:27.000000Z",
+      "updated_at": "2022-12-20T02:27:37.000000Z",
+      "banner_url": "https://files.fullstack.edu.vn/f8-prod/banners/20/6308a6bf603a4.png",
+      "show_with_array": []
+      },
+      {
+      "id": 8,
+      "placement": "home",
+      "type": "slideshow",
+      "show_with": null,
+      "slot_id": null,
+      "banner": "banners/Banner_web_ReactJS.png",
+      "title": "Học ReactJS Miễn Phí!",
+      "description": "Khóa học ReactJS từ cơ bản tới nâng cao. Kết quả của khóa học này là bạn có thể làm hầu hết các dự án thường gặp với ReactJS.",
+      "alt": "Khoá học ReactJS online tại F8",
+      "cta_title": "Đăng ký ngay",
+      "link_to": "https://fullstack.edu.vn/courses/reactjs?ref=banner",
+      "data": {
+        "props": {
+          "style": {
+          "--cta-hover-color": "#2877FA",
+          "background": "linear-gradient(to right, #2877FA,  #6717CD)"
+          }
+        }
+      },
+      "is_blank": 1,
+      "is_pro": false,
+      "priority": 2,
+      "expired": "2023-12-12 00:00:00",
+      "created_at": "2022-12-11T10:00:00.000000Z",
+      "updated_at": "2022-12-20T02:29:40.000000Z",
+      "banner_url": "https://files.fullstack.edu.vn/f8-prod/banners/Banner_web_ReactJS.png",
+      "show_with_array": []
+      },
+      {
+      "id": 3,
+      "placement": "home",
+      "type": "slideshow",
+      "show_with": null,
+      "slot_id": null,
+      "banner": "banners/Banner_01_2.png",
+      "title": "Thành Quả của Học Viên",
+      "description": "Để đạt được kết quả tốt trong mọi việc ta cần xác định mục tiêu rõ ràng cho việc đó. Học lập trình cũng không là ngoại lệ.",
+      "alt": "Thành quả của học viên",
+      "cta_title": "Xem thành quả",
+      "link_to": "https://fullstack.edu.vn/blog/tong-hop-cac-san-pham-cua-hoc-vien-tai-f8.html",
+      "data": {
+        "props": {
+          "style": {
+          "--cta-hover-color": "#7612ff",
+          "background": "linear-gradient(to right, #7612ff,  #05b2ff)"
+          }
+        }
+      },
+      "is_blank": 1,
+      "is_pro": false,
+      "priority": 3,
+      "expired": "2023-12-12 00:00:00",
+      "created_at": "2022-12-11T10:00:00.000000Z",
+      "updated_at": "2022-12-20T02:28:40.000000Z",
+      "banner_url": "https://files.fullstack.edu.vn/f8-prod/banners/Banner_01_2.png",
+      "show_with_array": []
+      },
+      {
+      "id": 4,
+      "placement": "home",
+      "type": "slideshow",
+      "show_with": null,
+      "slot_id": null,
+      "banner": "banners/Banner_03_youtube.png",
+      "title": "F8 trên Youtube",
+      "description": "F8 được nhắc tới ở mọi nơi, ở đâu có cơ hội việc làm cho nghề IT và có những con người yêu thích lập trình F8 sẽ ở đó.",
+      "alt": "F8 trên Youtube",
+      "cta_title": "Truy cập kênh",
+      "link_to": "https://www.youtube.com/channel/UCNSCWwgW-rwmoE3Yc4WmJhw",
+      "data": {
+        "props": {
+          "style": {
+          "--cta-hover-color": "#fe215e",
+          "background": "linear-gradient(to right, #fe215e,  #ff9402)"
+          }
+        }
+      },
+      "is_blank": 1,
+      "is_pro": false,
+      "priority": 4,
+      "expired": "2023-12-12 00:00:00",
+      "created_at": "2022-12-11T10:00:00.000000Z",
+      "updated_at": "2022-12-20T02:28:55.000000Z",
+      "banner_url": "https://files.fullstack.edu.vn/f8-prod/banners/Banner_03_youtube.png",
+      "show_with_array": []
+      },
+      {
+      "id": 5,
+      "placement": "home",
+      "type": "slideshow",
+      "show_with": null,
+      "slot_id": null,
+      "banner": "banners/Banner_04_2.png",
+      "title": "F8 trên Facebook",
+      "description": "F8 được nhắc tới ở mọi nơi, ở đâu có cơ hội việc làm cho nghề IT và có những con người yêu thích lập trình F8 sẽ ở đó.",
+      "alt": "F8 trên Facebook",
+      "cta_title": "Truy cập Facebook",
+      "link_to": "https://www.facebook.com/f8vnofficial",
+      "data": {
+        "props": {
+          "style": {
+          "--cta-hover-color": "#007efe",
+          "background": "linear-gradient(to right, #007efe,   #06c3fe)"
+          }
+        }
+      },
+      "is_blank": 1,
+      "is_pro": false,
+      "priority": 5,
+      "expired": "2023-12-12 00:00:00",
+      "created_at": "2022-12-11T10:00:00.000000Z",
+      "updated_at": "2022-12-20T02:29:09.000000Z",
+      "banner_url": "https://files.fullstack.edu.vn/f8-prod/banners/Banner_04_2.png",
+      "show_with_array": []
+      }
+    ]
+
+    //cách viết 1
+
+    // const CourseItem = props => (
+    //   <div>
+    //     <h2>{ props.title }</h2>
+    //     <img src={ props.image } alt={ props.title }/>
+    //     <p>{ props.description }</p>
+    //     <p>{ props.priority }</p>
+    //   </div>
+    // );
+
+    // function App() {
+    //   return (
+    //     <div id="wrapper">
+    //         {courses.map((course,index) => (
+    //           <CourseItem
+    //             key={ course.id }
+    //             title={ course.title }
+    //             image={ course.banner_url }
+    //             description={ course.description }
+    //             priority={ course.priority }
+    //           />
+    //         ))}
+    //     </div>
+    //   );
+    // }
+
+    //UI component.
+    const CourseItem = ({ course,onClick }) => (
+      <div>
+        <h2 onClick={ () => onClick(course) }>{ course.title }</h2>
+        <img src={ course.banner_url } alt={ course.title }/>
+        <p>{ course.description }</p>
+        <p>{ course.priority }</p>
+      </div>
+    );
+
+    //Container
+    function App() {
+
+      //useCallback
+      const handleClick = (course) => {
+        console.log(course.title);
+      }
+
+      return (
+        <div id="wrapper">
+            {courses.map((course,index) => (
+              <CourseItem
+                key={ course.id }
+                course={ course }
+                onClick={handleClick}
+              />
+            ))}
+        </div>
+      );
+    }
+
+    //index.js
+    const dom = document.getElementById('root');
+    const root = ReactDOM.createRoot(dom);
+    root.render(<App/>);
+
+  </script> -->
+
+</body>
 </html>
